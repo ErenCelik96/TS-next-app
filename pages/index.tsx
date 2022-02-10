@@ -4,7 +4,6 @@ import RecipeReviewCard from '../components/card';
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage<{posts:any}> = ({posts}: any) => {
-  console.log(posts);
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +13,7 @@ const Home: NextPage<{posts:any}> = ({posts}: any) => {
       </Head>
       <main className={styles.main}>
         {posts.map((post:any) => (
-          <RecipeReviewCard post={post}/>
+          <RecipeReviewCard post={post} key={post.id}/>
         )
         )}
       </main>
