@@ -1,11 +1,7 @@
 import React from 'react';
 import Nav from './nav';
 
-interface Props {
-  children: any;
-}
-
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: any) => {
   return <div>
     <Nav />
     <div>

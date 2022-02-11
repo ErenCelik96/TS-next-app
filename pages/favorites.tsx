@@ -2,8 +2,8 @@ import React from 'react'
 
 const favorites = () => {
   return (
-    <div>favs</div>
+    <div>ss</div>
   )
 }
 
-export default favorites
+export default favorites;
