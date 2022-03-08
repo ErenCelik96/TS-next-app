@@ -1,1 +1,1 @@
-# Bu projede ilk defa kullanma fırsatım olan Tyscript ve Next.js i kullanarak bir giyim mağazası web app oluşturdum.
+# Bu projede ilk defa kullanma fırsatım olan Typescript ve Next.js i kullanarak bir giyim mağazası web app oluşturdum.
