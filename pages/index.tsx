@@ -12,18 +12,16 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { likeButtonClick, getList, getCart } from './redux/actions'
 
 export const Home: NextPage<{ props: any }> = (props: any) => {
-  const state = useSelector((state) => state);
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getList(props.posts))
   }, [])
-  console.log(state)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -49,19 +47,17 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
               </CardContent></a></Link>
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
-                <ShoppingCartIcon onClick={()=>dispatch(getCart(post.id))}/>
+                <ShoppingCartIcon onClick={() => dispatch(getCart(post.id))} />
               </IconButton>
               <IconButton aria-label="share">
                 <FavoriteIcon onClick={() => dispatch(likeButtonClick(post.id))} />
               </IconButton>
             </CardActions>
           </Card>
-
         )
         )}
       </main>
       <footer className={styles.footer}>
-
       </footer>
     </div>
   )

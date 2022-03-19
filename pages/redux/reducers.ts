@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import * as types from './types'
 
 const initialLikeButtonState = {
-  like: ["test"]
+  like: ["initial"]
 }
 
 //like button reducer
@@ -34,7 +34,7 @@ const productsList = (state = [], action: any) => {
 }
 
 const initialCartState = {
-  cart: ["test"]
+  cart: ["initial"]
 }
 
 //cart reducer
