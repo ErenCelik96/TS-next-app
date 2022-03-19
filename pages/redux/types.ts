@@ -1,0 +1,4 @@
+// REDUX ACTION TYPES
+export const LIKE_BUTTON_CLICK = 'LIKE_BUTTON_CLICK'
+export const GET_LIST = 'GET_LIST'
+export const GET_CART = 'GET_CART'

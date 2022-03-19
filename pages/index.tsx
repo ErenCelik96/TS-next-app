@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import CardContent from '@material-ui/core/CardContent';
@@ -12,26 +12,18 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { likeButtonClick, getList, getCart } from './redux/actions'
 
-const Home: NextPage<{ posts: any }> = ({ posts }: any) => {
-  // const [favorite, setFavorite] = React.useState([]);
+export const Home: NextPage<{ props: any }> = (props: any) => {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch()
 
-  // React.useEffect(() => {
-  //   const favorites = sessionStorage.getItem('favorites');
-  //   if (favorites) {
-  //     setFavorite(JSON.parse(favorites));
-  //   }
-  // }, []);
-
-  // const handleFavorite = (id: any) => {
-  //   const newFavorites = [...favorite];
-  //   if(!newFavorites.includes(id)){
-  //   newFavorites.push(id);
-  //   setFavorite(newFavorites);
-  //   localStorage.setItem('favorites', JSON.stringify(favorite));
-  //   }
-  //   console.log("Add favorite", favorite);
-  // };
+  useEffect(() => {
+    dispatch(getList(props.posts))
+  }, [])
+  console.log(state)
   return (
     <div className={styles.container}>
       <Head>
@@ -40,7 +32,7 @@ const Home: NextPage<{ posts: any }> = ({ posts }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {posts.map((post: any) => (
+        {props.posts.map((post: any) => (
 
           <Card className="root" key={post.id}>
             <Link href={`/products/${post.id}`}><a><CardHeader title={post.title} subheader="September 14, 2020" />
@@ -57,10 +49,10 @@ const Home: NextPage<{ posts: any }> = ({ posts }: any) => {
               </CardContent></a></Link>
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
-                <ShoppingCartIcon />
+                <ShoppingCartIcon onClick={()=>dispatch(getCart(post.id))}/>
               </IconButton>
               <IconButton aria-label="share">
-                <FavoriteIcon />
+                <FavoriteIcon onClick={() => dispatch(likeButtonClick(post.id))} />
               </IconButton>
             </CardActions>
           </Card>
@@ -85,4 +77,4 @@ export const getStaticProps = async () => {
   };
 }
 
-export default Home
+export default Home;
