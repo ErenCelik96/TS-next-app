@@ -12,14 +12,20 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { likeButtonClick, getList, getCart } from './redux/actions'
 
 export const Home: NextPage<{ props: any }> = (props: any) => {
+  const products = useSelector((state: any) => state.products);
+  const cartList = useSelector((state: any) => state.cart.cart);
+  const favoriteList = useSelector((state: any) => state.likeButton.like);
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getList(props.posts))
+    if (products.length === 0) {
+      dispatch(getList(props.posts))
+    }
   }, [])
 
   return (
@@ -31,7 +37,6 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
       </Head>
       <main className={styles.main}>
         {props.posts.map((post: any) => (
-
           <Card className="root" key={post.id}>
             <Link href={`/products/${post.id}`}><a><CardHeader title={post.title} subheader="September 14, 2020" />
               <CardMedia
@@ -45,12 +50,12 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
                   {post.description}
                 </Typography>
               </CardContent></a></Link>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <ShoppingCartIcon onClick={() => dispatch(getCart(post.id))} />
+            <CardActions disableSpacing >
+              <IconButton onClick={() => dispatch(getCart(post.id))}>
+                <ShoppingCartIcon style={{ color: cartList.includes(post.id) ? 'purple' : '' }} />
               </IconButton>
-              <IconButton aria-label="share">
-                <FavoriteIcon onClick={() => dispatch(likeButtonClick(post.id))} />
+              <IconButton onClick={() => dispatch(likeButtonClick(post.id))}>
+                <FavoriteIcon style={{ color: favoriteList.includes(post.id) ? 'red' : '' }} />
               </IconButton>
             </CardActions>
           </Card>
@@ -63,7 +68,7 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch('https://fakestoreapi.com/products');
   const posts = await res.json();
   return {

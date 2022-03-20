@@ -7,10 +7,12 @@ import { Rating } from '@mui/material';
 import { CardActions, IconButton } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCart, likeButtonClick } from '../redux/actions';
 
 const ProductDetail = ({ post }: any) => {
+  const cartList = useSelector((state: any) => state.cart.cart);
+  const favoriteList = useSelector((state: any) => state.likeButton.like);
   const dispatch = useDispatch()
 
   return (
@@ -42,14 +44,14 @@ const ProductDetail = ({ post }: any) => {
             <p>Rate: {post.rating.rate}</p>
             <Rating name="read-only" value={post.rating.rate} readOnly />
           </Typography>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <ShoppingCartIcon onClick={() => dispatch(getCart(post.id))} />
-            </IconButton>
-            <IconButton aria-label="share">
-              <FavoriteIcon onClick={() => dispatch(likeButtonClick(post.id))} />
-            </IconButton>
-          </CardActions>
+          <CardActions disableSpacing >
+              <IconButton onClick={() => dispatch(getCart(post.id))}>
+                <ShoppingCartIcon style={{ color: cartList.includes(post.id) ? 'purple' : '' }} />
+              </IconButton>
+              <IconButton onClick={() => dispatch(likeButtonClick(post.id))}>
+                <FavoriteIcon style={{ color: favoriteList.includes(post.id) ? 'red' : '' }} />
+              </IconButton>
+            </CardActions>
         </CardContent>
       </Card>
     </main>
