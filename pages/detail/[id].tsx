@@ -8,7 +8,7 @@ import { CardActions, IconButton } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart, likeButtonClick } from '../redux/actions';
+import { getCart, likeButtonClick } from '../../redux/actions';
 
 const ProductDetail = ({ post }: any) => {
   const cartList = useSelector((state: any) => state.cart.cart);

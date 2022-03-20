@@ -13,11 +13,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { likeButtonClick, getList, getCart } from './redux/actions'
+import { likeButtonClick, getList, getCart } from '../redux/actions'
 import { Divider } from 'antd';
 
 export const Home: NextPage<{ props: any }> = (props: any) => {
-  const products = useSelector((state: any) => state.products);
+  const products = useSelector((state: any) => state.products); //products list
   const cartList = useSelector((state: any) => state.cart.cart);
   const favoriteList = useSelector((state: any) => state.likeButton.like);
 
@@ -42,7 +42,7 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
         <br></br>
         {props.posts.map((post: any) => (
           <Card className="root" key={post.id} style={{ minWidth: '10vw' }}>
-            <Link href={`/products/${post.id}`}><a>
+            <Link href={`/detail/${post.id}`}><a>
               <CardHeader title={post.title} subheader="September 14, 2020" />
               <CardMedia
                 className="media"
@@ -76,7 +76,7 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async () => {  
   const res = await fetch('https://fakestoreapi.com/products');
   const posts = await res.json();
   return {

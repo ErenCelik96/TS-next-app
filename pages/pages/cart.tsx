@@ -12,7 +12,7 @@ import {
 import { CreditCardOutlined } from '@ant-design/icons';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart } from './redux/actions';
+import { getCart } from '../../redux/actions';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const { Content } = Layout;
 
@@ -25,9 +25,9 @@ const Cart = () => {
   let sum = 0;
 
   const showModal = () => {
-    if(finalArray.length !== 0) {
+    if (finalArray.length !== 0) {
       setIsModalVisible(true);
-    }else{
+    } else {
       alert('Please select at least one product.');
     }
   };
@@ -81,7 +81,7 @@ const Cart = () => {
 
   return (
     <div>
-      <Layout style={{ padding: '0px 5vw', minHeight: '92.5vh'}}>
+      <Layout style={{ padding: '0px 5vw', minHeight: '92.5vh' }}>
         <Content className='site-layout-background'>
           <br></br>
           <Divider orientation='left'>Products in Cart</Divider>
@@ -92,7 +92,7 @@ const Cart = () => {
             dataSource={finalArray}
             style={{ width: '100%', margin: 'auto' }}
             pagination={false}
-            scroll={{ x: true, y:700 }}
+            scroll={{ x: true, y: 700 }}
           />
           <Row justify='end'>
             <Col>
@@ -101,7 +101,7 @@ const Cart = () => {
                 value={sum}
                 precision={2}
               />
-              <Button style={{ marginTop: 16 }} type='primary' onClick={()=>showModal()}>
+              <Button style={{ marginTop: 16 }} type='primary' onClick={() => showModal()}>
                 Pay now <CreditCardOutlined />
               </Button>
               <Modal footer={[]} title="Payment Successful!" visible={isModalVisible} onCancel={handleCancel}>

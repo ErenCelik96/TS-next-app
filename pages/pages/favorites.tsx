@@ -10,7 +10,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Rating } from '@mui/material';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart, likeButtonClick } from './redux/actions';
+import { getCart, likeButtonClick } from '../../redux/actions';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const { Content } = Layout;
 

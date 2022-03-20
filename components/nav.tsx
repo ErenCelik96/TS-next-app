@@ -9,27 +9,27 @@ const Nav = () => {
         <nav>
             <div className="navButtonGroup">
                 <ul className="navButtonList">
-                    <li className="navButton home">
-                        <Link href="/">
-                            <HomeOutlined style={{fontSize:'26px'}}/>
-                        </Link>
-                    </li>
-                    <li className="navButton detail">
-                        <Link href="/favorites">
-                            <HeartOutlined spin={likeList.length > 1 ? true : false} style={{fontSize:'26px'}}/>
-                        </Link>
-                        <span style={{fontSize:'12px',textAlign: 'center', display:'inline-block', height: '20px', width: '20px', borderRadius: '50%', backgroundColor: 'red' }}>
-                            {likeList.length - 1}
-                        </span>
-                    </li>
-                    <li className="navButton cart">
-                        <Link href="/cart">
-                            <ShoppingCartOutlined style={{fontSize:'26px'}}/>
-                        </Link>
-                        <span style={{fontSize:'12px',textAlign: 'center', display:'inline-block', height: '20px', width: '20px', borderRadius: '50%', backgroundColor: 'purple'}}>
-                            {cartList.length - 1}
-                        </span>
-                    </li>
+                    <Link href="/">
+                        <li className="navButton home">
+                            <HomeOutlined style={{ fontSize: '26px' }} />
+                        </li>
+                    </Link>
+                    <Link href="/pages/favorites">
+                        <li className="navButton detail">
+                            <HeartOutlined spin={likeList.length > 1 ? true : false} style={{ fontSize: '26px' }} />
+                            <span style={{ fontSize: '12px', textAlign: 'center', display: 'inline-block', height: '20px', width: '20px', borderRadius: '50%', backgroundColor: 'red' }}>
+                                {likeList.length - 1}
+                            </span>
+                        </li>
+                    </Link>
+                    <Link href="/pages/cart">
+                        <li className="navButton cart">
+                            <ShoppingCartOutlined style={{ fontSize: '26px' }} />
+                            <span style={{ fontSize: '12px', textAlign: 'center', display: 'inline-block', height: '20px', width: '20px', borderRadius: '50%', backgroundColor: 'purple' }}>
+                                {cartList.length - 1}
+                            </span>
+                        </li>
+                    </Link>
                 </ul>
             </div>
             <style>{
