@@ -14,6 +14,7 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { likeButtonClick, getList, getCart } from './redux/actions'
+import { Divider } from 'antd';
 
 export const Home: NextPage<{ props: any }> = (props: any) => {
   const products = useSelector((state: any) => state.products);
@@ -36,9 +37,13 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <br></br>
+        <Divider style={{ fontSize: '26px' }} orientation='center'>All Products</Divider>
+        <br></br>
         {props.posts.map((post: any) => (
-          <Card className="root" key={post.id}>
-            <Link href={`/products/${post.id}`}><a><CardHeader title={post.title} subheader="September 14, 2020" />
+          <Card className="root" key={post.id} style={{ minWidth: '10vw' }}>
+            <Link href={`/products/${post.id}`}><a>
+              <CardHeader title={post.title} subheader="September 14, 2020" />
               <CardMedia
                 className="media"
                 image={post.image}
@@ -47,7 +52,10 @@ export const Home: NextPage<{ props: any }> = (props: any) => {
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {post.description}
+                  {post.description.length > 200 ? 
+                  post.description.substring(0, 150) + '...' 
+                  : 
+                  post.description}
                 </Typography>
               </CardContent></a></Link>
             <CardActions disableSpacing >

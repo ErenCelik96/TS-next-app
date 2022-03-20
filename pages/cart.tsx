@@ -81,17 +81,18 @@ const Cart = () => {
 
   return (
     <div>
-      <Layout style={{ padding: '0px 100px', minHeight: '92.5vh'}}>
+      <Layout style={{ padding: '0px 5vw', minHeight: '92.5vh'}}>
         <Content className='site-layout-background'>
           <br></br>
-          <Divider orientation='left'>Total Items</Divider>
+          <Divider orientation='left'>Products in Cart</Divider>
           <br></br>
           <Table
             size='small'
             columns={columns}
             dataSource={finalArray}
-            style={{ width: '80%', margin: 'auto' }}
+            style={{ width: '100%', margin: 'auto' }}
             pagination={false}
+            scroll={{ x: true, y:700 }}
           />
           <Row justify='end'>
             <Col>

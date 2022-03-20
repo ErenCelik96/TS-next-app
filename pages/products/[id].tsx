@@ -16,20 +16,20 @@ const ProductDetail = ({ post }: any) => {
   const dispatch = useDispatch()
 
   return (
-    <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh', width: '100%', padding: '50px' }}>
-      <Card sx={{ width: 300 }}>
+    <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '92.5vh', width: '100%', padding: '50px' }}>
+      <Card style={{ maxWidth: '300px', height:'85vh' }}>
         <CardMedia
           component="img"
-          height="100%"
           image={post.image}
           alt="product image"
+          style={{ maxWidth: '200px', margin: 'auto' }}
         />
-        <CardContent style={{ maxHeight: 350, overflow:'auto' }}>
+        <CardContent style={{minWidth:'60%', overflow: 'auto' }}>
           <Typography gutterBottom variant="h5" component="div">
             {post.title}
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            {post.description.length > 200 ? post.description.substring(0, 200) + '...' : post.description}
+            {post.description.length > 150 ? post.description.substring(0, 150) + '...' : post.description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Catergory: {post.category}
@@ -45,13 +45,13 @@ const ProductDetail = ({ post }: any) => {
             <Rating name="read-only" value={post.rating.rate} readOnly />
           </Typography>
           <CardActions disableSpacing >
-              <IconButton onClick={() => dispatch(getCart(post.id))}>
-                <ShoppingCartIcon style={{ color: cartList.includes(post.id) ? 'purple' : '' }} />
-              </IconButton>
-              <IconButton onClick={() => dispatch(likeButtonClick(post.id))}>
-                <FavoriteIcon style={{ color: favoriteList.includes(post.id) ? 'red' : '' }} />
-              </IconButton>
-            </CardActions>
+            <IconButton onClick={() => dispatch(getCart(post.id))}>
+              <ShoppingCartIcon style={{ color: cartList.includes(post.id) ? 'purple' : '' }} />
+            </IconButton>
+            <IconButton onClick={() => dispatch(likeButtonClick(post.id))}>
+              <FavoriteIcon style={{ color: favoriteList.includes(post.id) ? 'red' : '' }} />
+            </IconButton>
+          </CardActions>
         </CardContent>
       </Card>
     </main>

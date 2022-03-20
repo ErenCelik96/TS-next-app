@@ -93,17 +93,18 @@ const Favorites = () => {
 
   return (
     <div>
-      <Layout style={{ padding: '0px 100px', minHeight: '92.5vh' }}>
+      <Layout style={{ padding: '0px 5vw', minHeight: '92.5vh' }}>
         <Content className='site-layout-background'>
           <br></br>
-          <Divider orientation='left'>Total Items</Divider>
+          <Divider orientation='left'>Products You Like</Divider>
           <br></br>
           <Table
             size='small'
             columns={columns}
             dataSource={finalArray}
-            style={{ width: '80%', margin: 'auto' }}
+            style={{ minWidth: '20vw', margin: 'auto' }}
             pagination={false}
+            scroll={{ x: true, y:700 }}
           />
           <Divider orientation='right'>
             <p>Billing</p>

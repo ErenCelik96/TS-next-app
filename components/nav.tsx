@@ -38,9 +38,9 @@ const Nav = () => {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 0 30%;
+                    padding: 0 15%;
                     background-color: #0f90c4;
-                    width: 100%;
+                    minWidth: 100%;
                 }
                 .navButtonGroup{
                     display: flex;
